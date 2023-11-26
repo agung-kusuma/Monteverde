@@ -1,0 +1,15 @@
+{
+  "name": "monteverde",
+  "version": "1.0.0",
+  "description": "Tugas Souvenir Web Server",
+  "main": "index.js",
+  "scripts": {
+    "monte-run": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

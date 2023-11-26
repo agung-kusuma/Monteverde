@@ -1,27 +1,53 @@
-const express = require("express");
-const cors = require("cors");
-
+const express = require('express');
 const app = express();
 const port = 3000;
 
-app.use(cors());
-app.use(express.json());
+const data = [
+  {
+    id: 1,
+    namaProvinsi: 'Jawa Barat',
+    namaKecamatan: 'Bandung',
+    namaDesa: 'Cibiru',
+  },
+  {
+    id: 2,
+    namaProvinsi: 'Jambi',
+    namaKecamatan: 'Tebo Tengah',
+    namaDesa: 'Tebing Tinggi',
+  },
+  {
+    id: 3,
+    namaProvinsi: 'Jawa Timur',
+    namaKecamatan: 'Surabaya',
+    namaDesa: 'Sukolilo',
+  },
+  {
+    id: 4,
+    namaProvinsi: 'Aceh',
+    namaKecamatan: 'Surabaya',
+    namaDesa: 'Sukolilo',
+  },
+  
+  // Tambahkan data provinsi, kecamatan, dan desa lainnya sesuai kebutuhan
+];
 
-app.get("/api", (req, res) => {
-  res.json([
-    {
-      id: 1,
-      nama: "Yanto",
-      kelas: "TT-40-01",
-    },
-    {
-      id: 2,
-      nama: "Sugito",
-      kelas: "TT-42-02",
-    },
-  ]);
+// Endpoint untuk mendapatkan semua data
+app.get('/', (req, res) => {
+  res.json(data);
+});
+
+// Endpoint untuk mendapatkan data berdasarkan ID
+app.get('/', (req, res) => {
+  const id = parseInt(req.params.id);
+  const result = data.find(item => item.id === id);
+
+  if (result) {
+    res.json(result);
+  } else {
+    res.status(404).json({ message: 'Data not found' });
+  }
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+  console.log(`Example app listening on port ${port}`)
+})
